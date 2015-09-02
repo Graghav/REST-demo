@@ -1,0 +1,103 @@
+<html ng-app="helloApp">
+	<head>
+		<title>Hello Network</title>
+		<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link href="style.css" rel="stylesheet">
+		<!-- Load Jquery and Bootstrap Scripts -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+	</head>
+	<body ng-controller="statusCtrl">
+
+		<!-- Nav Bar -->
+		<nav class="navbar navbar-default">
+		  <div class="container">
+		    <div class="navbar-header">
+		       <a class="navbar-brand" href="#">Hello!</a>
+		  </div>
+
+		  <!-- Navbar items -->
+		  <div class="collapse navbar-collapse">
+		      <ul class="nav navbar-nav">
+		        <li class="active">
+		        	<a href="#">Home</a>
+		        </li>
+			      </ul>
+		      <ul ng-if="loggedIn" class="nav navbar-nav navbar-right">
+        		<li><a href="#">Logged In as {{user.name}}</a></li>
+        	  </ul>
+		  </div>
+		</nav>
+		<!-- End of Nav Bar -->
+		<div class="container" >
+			<div class="row">
+				<div class="col col-md-5">
+					<form ng-if="!loggedIn">
+						<h4>Create an account</h4>
+						<div class="input-group">
+						  <span class="input-group-addon">@</span>
+						  <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" ng-model="user.username">
+						</div>
+						<br>
+						<input type="text" class="form-control" ng-model="user.name" placeholder="Full Name">
+						<br>
+						<input type="text" class="form-control" ng-model="user.age" placeholder="Age">
+						<br>
+						<button type="button" class="btn btn-primary pull-right" ng-click="create()">Sign up</button>
+					</form>
+					<form ng-if="loggedIn">
+						<textarea class="form-control" placeholder="Share your status" rows="3" ng-model="stat.status"></textarea>
+						<br>
+						<button type="button" class="btn btn-primary pull-right" ng-click="share()">Share</button>
+					</form>
+					<div class="row" ng-if="userOwnFeed.length > 0">
+						<br><hr>
+						<h3>{{user.name}}'s Feed</h3>
+						<div class="col col-md-12">
+							<ul class="media-list">
+		                        <li class="media" ng-repeat="s in userOwnFeed">
+		                            <div class="media-body">
+		                                <span class="text-muted pull-right">
+		                                    <small class="text-muted">{{s.time}}</small>
+		                                </span>
+		                                <strong class="text-success">@{{s.username}}</strong>
+		                                <p>
+		                                   {{s.content}}
+		                                </p>
+		                            </div>
+		                        </li>
+		                 
+		                    </ul>
+						</div>
+					</div>
+				</div>
+				<div class="col col-md-1 headerDivider"></div>
+				<div class="col col-md-5">
+					<h3>Your Feed</h3>
+					<ul class="media-list">
+                        <li class="media" ng-repeat="s in feed">
+                            <div class="media-body">
+                                <span class="text-muted pull-right">
+                                    <small class="text-muted">{{s.time}}</small>
+                                </span>
+                                <strong class="text-success">@{{s.username}}</strong>
+                                <p>
+                                   {{s.content}}
+                                </p>
+                            </div>
+                        </li>
+                 
+                    </ul>
+				</div>
+			</div>
+		</div>
+
+		<!-- Load the Angular Scripts -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.5/angular-route.min.js"></script>
+		<script src="app.js"></script>
+	</body>
+</html>

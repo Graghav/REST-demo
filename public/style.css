@@ -1,0 +1,22 @@
+body {
+	font-family: "Roboto";
+
+}
+
+.headerDivider {
+     border-right:1px solid #CCC; 
+     height:100%;
+}
+
+.media-list {
+    margin-top: 25px;
+}
+
+.media {
+    border-bottom: 1px solid #efefef;
+    margin-bottom: 25px;
+}
+
+.media p {
+    margin-top: 10px;
+}
